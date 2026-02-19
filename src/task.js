@@ -1,4 +1,7 @@
 // Task management module
+
+const MAX_LABELS = 5;
+
 class Task {
   constructor(title, description) {
     this.id = Date.now();
@@ -7,6 +10,7 @@ class Task {
     this.status = "todo";
     this.createdAt = new Date();
     this.priority = "medium";
+    this.labels = [];
   }
 
   updateStatus(status) {
@@ -23,6 +27,16 @@ class Task {
       return true;
     }
     return false;
+  }
+
+  addLabel(label) {
+    if (
+      label &&
+      !this.labels.includes(label) &&
+      this.labels.length < MAX_LABELS
+    ) {
+      this.labels.push(label);
+    }
   }
 }
 
